@@ -1,5 +1,6 @@
 konduti-view
 ============
+WORK IN PROGRESS! 
 
 Generates System Documentation from a test run of Jbehave user stories.
 
