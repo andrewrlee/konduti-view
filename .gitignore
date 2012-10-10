@@ -3,3 +3,5 @@ target/
 .gradle/
 bin/
 build/
+.settings/
+chromedriver.log
