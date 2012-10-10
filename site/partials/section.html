@@ -1,0 +1,21 @@
+<div class="container main">
+	<div class="row section">
+		<div ng-show="children.length != 0" class="row main">
+			<h4>Child Sections</h4>
+			<ul>
+				<li ng-repeat="child in children"><a
+					href="#/section/{{child.path}}">{{child.name}}</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="row section">
+		<div ng-show="stories" class="row main">
+			<h4>Stories in this Section</h4>
+			<ul>
+				<li ng-repeat="story in stories"><a
+					href="#/section/{{currentSection}}/story/{{story}}">{{story}}</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>

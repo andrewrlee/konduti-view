@@ -1,0 +1,99 @@
+<div class="container main">
+	<h3>{{story.name}}</h3>
+	<div class="row">
+		<div ng-class="{'span9': !devMode, 'span6': devMode}">
+			<p class="lead">{{story.description}}</p>
+			<div class="narrative lead">
+			  <ul ng-repeat="(key, text) in story.narrative">
+				<li>
+				  <strong>{{key}}</strong>&nbsp;{{text}}
+				</ul>
+			</div>
+			
+			<div class="accordion-heading jira">
+				<a class="accordion-toggle" data-toggle="collapse"
+					data-parent="#accordion2" href="#collapseOne">
+						 &#0187;<small>External Links</small></a>
+			</div>
+			<div id="collapseOne" class="accordion-body collapse">
+				<div class="jiras accordion-inner">
+					<ul ng-repeat="(name, link) in story.links">
+						<li><small>
+						<span data-external-link></span></small>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="span3"  ng-show="devMode">
+			<div>
+			<span class="badge badge-success">{{story.statistics.successes}}</span>
+			<span class="badge badge-warning">{{story.statistics.pending}}</span>
+			<span class="badge badge-important">{{story.statistics.failures}}</span>
+			<span class="badge badge">{{story.statistics.notRun}}</span>
+			</div>
+			<br/>
+			<div class="progress">
+				<div class="bar bar-success"
+					style="width: {{story.statistics.successesPercentage}}%;"></div>
+				<div class="bar bar-warning"
+					style="width: {{story.statistics.pendingPercentage}}%;"></div>
+				<div class="bar bar-danger"
+					style="width: {{story.statistics.failuresPercentage}}%;"></div>
+			</div>
+			<p>
+		</div>
+	</div>
+	<div class="row acceptanceCriteria">
+  	  <div class="span9 criteriaTitle">
+		<h4>Acceptance Criteria<span>  <input type="text"  ng-model="query" class="search-query pull-right" placeholder="Filter"></span></h4>
+	  </div>
+	</div>
+	<div ng-repeat="scenario in story.scenarios | filter:query" class="row">
+		<div class="span9 scenario">
+			<div ng-class="{'span8': !devMode, 'span6': devMode}">
+				<p>
+					{{scenario.scenarioName}}<span class="pull-right" ng-show="devMode"><small>{{scenario.duration}}</small></span>
+				</p>
+					<ul ng-class="getListClass()" ng-repeat="step in scenario.steps">
+					
+					  <li>
+							<button ng-show="devMode && showExpansionButton(step)" type="button"
+								class="btn-small btn-link" data-toggle="collapse" data-parent="#parent_scenario{{$parent.$index}}"
+								data-target="#demo_scenario{{$parent.$index}}_step{{$index}}">
+								<span class="icon-plus-sign"></span>
+							</button>
+							<span class="stepMessageIndent" ng-show="devMode && !showExpansionButton(step)" ></span>
+							<span ng-bind-html="getBadgeType(step)"></span> 
+							<span ng-bind-html="step.stepName|jbehaveVariable"></span> 
+							<span class="pull-right" ng-show="devMode"><small>{{step.duration}}</small></span>
+						<div id="demo_scenario{{$parent.$index}}_step{{$index}}" class="collapse">
+						<ul ng-show="devMode" class="stepMessage">
+						  <li ng-show="message.type != 'IMAGE'" class="stepMessage{{message.type}}" ng-repeat="message in step.messages">{{message.payload}}</li>
+						  <li ng-show="message.type == 'IMAGE'" class="stepMessage{{message.type}}" ng-repeat="message in step.messages">
+							<p><a class='iframe' href="data/{{message.payload}}">View Page</a></p>
+						  </li>
+					    </ul>
+					    </div>
+					  </li>
+					</ul>
+			</div>
+		<div class="span2" ng-show="devMode">
+		  <div>
+			    <span class="badge badge-success">{{scenario.statistics.successes}}</span>
+			    <span class="badge badge-warning">{{scenario.statistics.pending}}</span>
+			    <span class="badge badge-important">{{scenario.statistics.failures}}</span>
+			    <span class="badge badge">{{scenario.statistics.notRun}}</span>
+		  </div>
+		  <br/>
+		  <div class="progress">
+			<div class="bar bar-success"
+			  style="width: {{scenario.statistics.successesPercentage}}%;"></div>
+			<div class="bar bar-warning"
+			  style="width: {{scenario.statistics.pendingPercentage}}%;"></div>
+			<div class="bar bar-danger"
+			  style="width: {{scenario.statistics.failuresPercentage}}%;"></div>
+			</div>
+		</div>
+	</div>
+		  </div>
+	</div>

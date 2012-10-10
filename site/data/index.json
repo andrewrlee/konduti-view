@@ -1,0 +1,44 @@
+{
+  "sections": {
+    "name": "root",
+    "path": "root",
+    "children": [
+      {
+        "name": "Test Page",
+        "path": "root \u003e Test Page",
+        "children": [
+          {
+            "name": "Search",
+            "path": "root \u003e Test Page \u003e Search",
+            "children": [],
+            "dotPath": "root.test_page.search"
+          },
+          {
+            "name": "User Functions",
+            "path": "root \u003e Test Page \u003e User Functions",
+            "children": [],
+            "dotPath": "root.test_page.user_functions"
+          }
+        ],
+        "dotPath": "root.test_page"
+      }
+    ],
+    "dotPath": "root"
+  },
+  "sectionsToStories": {
+    "test_page.user_functions": [
+      "Check the test page"
+    ],
+    "test_page.search": [
+      "Check the test page"
+    ]
+  },
+  "dotSeperatedToPath": {
+    "test_page.user_functions": "Test Page \u003e User Functions",
+    "test_page.search": "Test Page \u003e Search"
+  },
+  "pathTodotSeperated": {
+    "Test Page \u003e Search": "test_page.search",
+    "Test Page \u003e User Functions": "test_page.user_functions"
+  }
+}
